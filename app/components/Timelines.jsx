@@ -1,6 +1,7 @@
 "use client";
 import Image from 'next/image';
 import clsx from 'clsx';
+import SpringModal from './SpringModal';
 
 export default function Timelines() {
 
@@ -137,18 +138,6 @@ export default function Timelines() {
         },
     ];
 
-    const zoomInOut = (id) => {
-        const detail = document.getElementById(`detail-${id}`);
-        const parent = document.getElementById(`parent-${id}`);
-
-        if (detail.classList.contains('hidden')) {
-            detail.classList.remove('hidden');
-        } else {
-            detail.classList.add('hidden');
-        }
-
-    }
-
     return (
         <div className="mb-5">
             <h4 className="text-2xl font-bold mb-10">My Timeline</h4>
@@ -158,15 +147,17 @@ export default function Timelines() {
                     timelines.map((timeline) => (
                         <li 
                         key={timeline.id} 
-                        id={`parent-${timeline.id}`}
-                        className="mb-10 ms-6 rounded overflow-hidden"
+                        className="mb-10 ms-6 rounded h-14 overflow-hidden"
                         >    
-                            <button 
-                            onClick={() => zoomInOut(timeline.id)} 
-                            className="absolute mt-1 font-medium end-1"
+                            <div
+                              className="absolute end-1"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20v-5h1v3.292l3.6-3.6l.708.708l-3.6 3.6H9v1zM15.4 9.308l-.708-.708l3.6-3.6H15V4h5v5h-1V5.708z"/></svg>
-                            </button>
+                                <SpringModal 
+                                  detail={timeline.detail}
+                                  date={timeline.date}
+                                  title={timeline.html}
+                                />
+                            </div>
                             
                             <a 
                             target="_blank" 
@@ -180,7 +171,7 @@ export default function Timelines() {
                                 <Image width={200} height={200} src={timeline.image} alt={timeline.name}/>
                             </a>
 
-                            <div className="p-2 py-1 rounded shadow-sm bg-gray-700 border-gray-600 ms-3 timeline-card">
+                            <div className="p-2 py-1 rounded shadow-sm bg-gray-700 border border-gray-600 ms-3 timeline-card">
                                 <time className="text-sm font-medium">
                                     {timeline.date}
                                 </time>
@@ -189,12 +180,6 @@ export default function Timelines() {
                                 className="text-sm font-normal text-gray-100"
                                 dangerouslySetInnerHTML={{__html: timeline.html}}
                                 ></div>
-
-                                <ul 
-                                className="text-sm space-y-2 my-3 list-disc ps-4 hidden" 
-                                id={`detail-${timeline.id}`}
-                                dangerouslySetInnerHTML={{__html: timeline.detail}}
-                                ></ul>
                             </div>
                         </li>
                     ))

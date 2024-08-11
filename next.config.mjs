@@ -8,6 +8,11 @@ const nextConfig = {
                 hostname: 'localhost',
                 port: '8000',
             },
+            {
+                protocol: 'https',
+                hostname: 'lingmyat-be.netlify.app',
+                port: '',
+            }
         ],
     }
 };
