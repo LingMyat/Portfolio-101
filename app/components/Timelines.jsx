@@ -147,7 +147,7 @@ export default function Timelines() {
                     timelines.map((timeline) => (
                         <li 
                         key={timeline.id} 
-                        className="mb-10 ms-6 rounded h-14 overflow-hidden"
+                        className="mb-10 ms-6 rounded h-16 overflow-hidden"
                         >    
                             <div
                               className="absolute end-1"
