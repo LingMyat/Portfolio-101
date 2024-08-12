@@ -16,19 +16,34 @@ export default function Drawer({ title, description, image, url }) {
 
     return (
         <div className="">
-            <div onClick={() => setOpen(true)}>
-                <h3
-                    className={clsx({
-                        'font-medium cursor-pointer hover:text-green-400': true,
-                        'mb-1': description
-                    })}
-                >
-                    {title}
-                </h3>
+            <div
+                onClick={() => setOpen(true)}
+                className="flex items-center gap-4 mb-6 cursor-pointer"
+            >
+                <div
+                    style={{
+                        backgroundImage: `url(${image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                    }}
+                    className="md:min-w-[180px] min-w-[160px] h-[85px] md:h-[95px]"
+                ></div>
 
-                <p className="text-sm">
-                    {description}
-                </p>
+
+                <div className="" >
+                    <h3
+                        className={clsx({
+                            'font-medium hover:text-green-400': true,
+                            'mb-1': description
+                        })}
+                    >
+                        {title}
+                    </h3>
+
+                    <p className="text-sm">
+                        {description}
+                    </p>
+                </div>
             </div>
 
             <DragCloseDrawer open={open} setOpen={setOpen}>
@@ -41,7 +56,7 @@ export default function Drawer({ title, description, image, url }) {
                             alt={title}
                         />
                     </div>
-                    
+
                     <div className="relative ps-2 md:ps-4 h-full overflow-hidden rounded-2xl">
                         <div className="space-y-4 pt-5 md:pt-8">
                             <h3 className="text-lg font-medium">

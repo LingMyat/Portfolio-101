@@ -12,12 +12,10 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className='font-mono'>
-
-
                 <main id="main" className="py-20 md:px-0 px-3">
-                <ReactQueryProvider>
-                    {children}
-                </ReactQueryProvider> 
+                    <ReactQueryProvider>
+                        {children}
+                    </ReactQueryProvider> 
                 </main>
 
                 <div className="star-field">

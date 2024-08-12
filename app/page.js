@@ -5,6 +5,7 @@ import Timelines from "./components/Timelines";
 import Project from './components/Project';
 import Skills from './components/Skills';
 import Image from 'next/image';
+import Loader from "./components/RandomLoader";
 
 export default function Home() {
 
@@ -51,7 +52,7 @@ export default function Home() {
                 />
             </div>
 
-            {isLoading && 'Loading......'}
+            {isLoading && <Loader />}
 
             {
                 isSuccess && (

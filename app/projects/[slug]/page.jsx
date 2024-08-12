@@ -4,6 +4,7 @@ import useFetch from "@/app/hooks/useApi";
 import "../../styles/custom-content.css";
 import Drawer from "./components/drawer";
 import Image from 'next/image';
+import Loader from "@/app/components/RandomLoader";
 
 export default function Page({ params }) {
     const {
@@ -37,7 +38,7 @@ export default function Page({ params }) {
                 />
             </div>
 
-            {loading && "Loading...."}
+            {loading && <Loader />}
 
             {
                 success && (
@@ -61,27 +62,13 @@ export default function Page({ params }) {
                             data.items.map(item => (
                                 <div
                                     key={item.id}
-                                    className="flex items-center gap-4 mb-6"
                                 >
-                                    <div
-                                        style={{
-                                            backgroundImage: `url(${process.env.NEXT_PUBLIC_API_URL}${item.image})`,
-                                            backgroundSize: 'cover',
-                                            backgroundPosition: 'center'
-                                        }}
-                                        className="md:min-w-[180px] min-w-[160px] h-[85px] md:h-[95px]"
-                                    >
-
-                                    </div>
-
-                                    <div>
-                                        <Drawer
-                                            title={item.title}
-                                            description={item.description}
-                                            image={process.env.NEXT_PUBLIC_API_URL + item.image}
-                                            url={item.link}
-                                        />
-                                    </div>
+                                    <Drawer
+                                        title={item.title}
+                                        description={item.description}
+                                        image={process.env.NEXT_PUBLIC_API_URL + item.image}
+                                        url={item.link}
+                                    />
                                 </div>
                             ))
                         }
